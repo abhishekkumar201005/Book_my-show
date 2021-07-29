@@ -2,6 +2,7 @@ import React from "react";
 
 // Components
 import EntertainmentCardSlider from "../components/Entertaiment/Entertainmentcard.components";
+import Premier from "../components/Premier/premier.component";
 const HomePage = () => {
   return (
     <>
@@ -10,6 +11,7 @@ const HomePage = () => {
           The best of Entertainment
         </h1>
         <EntertainmentCardSlider />
+        <Premier />
       </div>
     </>
   );
