@@ -1,35 +1,24 @@
-import React from "react";
-import { MdChevronRight, MdSearch, MdMenu } from "react-icons/md";
-import { BiChevronDown } from "react-icons/bi";
+import React, { useContext } from "react";
+import { BiSearch, BiMenu, BiChevronDown, BiShareAlt } from "react-icons/bi";
+
+// Context
+import { MovieContext } from "../../context/movie.context";
 const NavSm = () => {
+  const { movie } = useContext(MovieContext);
   return (
     <>
       <div className="text-white flex items-center justify-between">
         <div>
-          <h3 className="text-xl font-bold">It All starts Here!</h3>
-          <span className="text-gray-400 text-xs  flex items-center">
-            Delhi <MdChevronRight />
-          </span>
+          <h3 className="text-xl font-bold">{movie.original_title}</h3>
         </div>
-        <div className="w-d h-8">
-          <MdSearch className="w-full h-full" />
+        <div className="w-8 h-8">
+          <BiShareAlt className="w-full h-full" />
         </div>
       </div>
     </>
   );
 };
-const NavMd = () => {
-  return (
-    <div className="w-full flex items-center gap-3 bg-white py-2 px-3 rounded-md">
-      <MdSearch />
-      <input
-        type="search"
-        className="w-full bg-transparent border-none focus:outline-none"
-        placeholder="Search for Movies, Events, Play, Sports and  Activities."
-      />
-    </div>
-  );
-};
+
 const NavLg = () => {
   return (
     <>
@@ -43,23 +32,23 @@ const NavLg = () => {
             />
           </div>
           <div className="w-full flex items-center gap-3 bg-white px-3 py-2 rounded-md">
-            <MdSearch />
+            <BiSearch />
             <input
               type="search"
               className="w-full bg-transparent border-none focus:outline-none"
-              placeholder="Search for Movies, Events, Play, Sports and  Activities."
+              placeholder="Search for movies, events, Plays, Sports and Activities."
             />
           </div>
         </div>
         <div className="flex items-center gap-3">
           <span className="text-gray-200 text-xs flex items-center cursor-pointer hover:text-white">
-            Delhi <BiChevronDown />
+            Bengaluru <BiChevronDown />
           </span>
           <button className="bg-red-600 text-white px-2 py-1 text-sm rounded">
             Sign in
           </button>
           <div className="w-8 h-8 text-white">
-            <MdMenu className="w-full h-full" />
+            <BiMenu className="w-full h-full" />
           </div>
         </div>
       </div>
@@ -67,23 +56,25 @@ const NavLg = () => {
   );
 };
 
-const Navbar = () => {
+const MovieNavbar = () => {
   return (
     <>
-      <nav className="bg-bms-700 p-4">
+      <nav className="absolute inset-x-0 z-30 bg-opacity-10 backdrop-filter backdrop-blur-lg lg:relative lg:bg-bms-700 p-4">
         <div className="md:hidden">
-          {
-            /*Mobile Screen */
-            <NavSm />
-          }
+          {/* Mobile screen */}
+          <NavSm />
         </div>
-        <div className=" hidden md:flex lg:hidden">
-          {/*Tablet Screen */ <NavMd />}
+        <div className="hidden md:block lg:hidden">
+          {/* Medium/Tab screen */}
+          <NavSm />
         </div>
-        <div className="hidden lg:flex">{/*laptop Screen */ <NavLg />}</div>
+        <div className="hidden w-full lg:flex">
+          {/* Large screen */}
+          <NavLg />
+        </div>
       </nav>
     </>
   );
 };
 
-export default Navbar;
+export default MovieNavbar;
